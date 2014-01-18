@@ -1,4 +1,3 @@
-graphmaster5000
-===============
+# graphmaster5000
 
-Testing out git.
+Just testing this out.
