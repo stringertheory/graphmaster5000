@@ -4,7 +4,6 @@
 https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
 """
 # standard library
-import os
 import sys
 
 # 3rd party
@@ -12,6 +11,12 @@ import setuptools
 
 # local (to use version)
 import graphmaster
+
+# use this to publish to pypi
+if sys.argv[-1] == 'publish':
+    os.system("python setup.py sdist upload -r pypi")
+    os.system("python setup.py bdist_wheel upload -r pypi")
+    sys.exit()
 
 # read these files to use later in the description
 with open('README.rst') as stream:
