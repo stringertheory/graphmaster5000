@@ -1,51 +1,36 @@
 #!/usr/bin/env python
+"""Packaging script for graphmaster. Most of the stuff in here is from:
 
+https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
+"""
+# standard library
 import os
 import sys
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+# 3rd party
+import setuptools
 
+# local (to use version)
 import graphmaster
 
-if sys.argv[-1] == 'publish':
-    os.system('python setup.py sdist upload')
-    sys.exit()
+# read these files to use later in the description
+with open('README.rst') as stream:
+    readme = stream.read()
+with open('HISTORY.rst') as stream:
+    history = stream.read()
+with open('LICENSE') as stream:
+    license = stream.read()
 
-packages = [
-    'graphmaster',
-]
-
-requires = []
-
-with open('README.md') as f:
-    readme = f.read()
-with open('HISTORY.md') as f:
-    history = f.read()
-with open('LICENSE') as f:
-    license = f.read()
-
-setup(
-    name='graphmaster5000',
+# do the bizness
+setuptools.setup(
+    name='graphmaster',
     version=graphmaster.__version__,
     description="Doesn't do anything yet.",
     long_description=readme + '\n\n' + history,
     author='Mike Stringer',
     author_email='mike.stringer@datascopeanalytics.com',
     url='https://github.com/stringertheory/graphmaster5000',
-    packages=packages,
-    package_data={'': ['LICENSE']},
-    package_dir={'graphmaster': 'graphmaster'},
-    include_package_data=True,
-    install_requires=requires,
     license=license,
-    zip_safe=False,
-    classifiers=(
-        'Development Status :: 1 - Crap',
-        'Natural Language :: English',
-        'License :: OSI Approved :: MIT',
-        'Programming Language :: Python',
-    ),
+    packages=setuptools.find_packages(exclude=['tests*']),
+    include_package_data=True,
 )
