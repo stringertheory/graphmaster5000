@@ -4,6 +4,7 @@
 https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
 """
 # standard library
+import os
 import sys
 
 # 3rd party
